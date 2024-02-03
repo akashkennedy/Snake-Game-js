@@ -12,7 +12,7 @@ const gridSize = 20;
 let snake = [{x: 10, y: 10}];
 let food = generateFood();
 let highScore = 0;
-let direction = 'up'
+let direction = 'right'
 let gameInterval;
 let gameSpeedDelay = 200;
 gameStarted = false;
@@ -53,9 +53,6 @@ function setPosition(element, position){
     element.style.gridRow = position.y;
 }
 
-// Testing Draw Function 
-
-// draw();
 
 function drawFood(){
     if(gameStarted) {
@@ -75,8 +72,8 @@ function generateFood() {
 // Moving the Snake 
 
 function move() {
-    const head = {...snake[0]} // Spread Operator Duplicates the snake array of Objects
-     
+    const head = {...snake[0]}; // Spread Operator Duplicates the snake array of Objects
+
     switch (direction) {
         case 'up':
                 head.y--;
@@ -94,9 +91,8 @@ function move() {
 
     snake.unshift(head);
 
-    // snake.pop();
 
-    if(head.x = food.x && head.y == food.y) {
+    if(head.x === food.x && head.y === food.y) {
         food = generateFood();
         increaseSpeed();
         clearInterval(gameInterval); //Clear Past Interval
@@ -110,12 +106,6 @@ function move() {
     }
 }
 
-// Test Moving
-
-// setInterval(()=> {
-//     move(); // Move firs
-//     draw();
-// }, 200)
 
 // Start Game Function 
 
@@ -188,7 +178,7 @@ function checkCollision() {
 function resetGame() {
     updateHighScore();
     stopGame();
-    snake = [{x : 10, y : 10}];
+    snake = [{x: 10, y: 10}];
     food = generateFood();
     direction = 'right';
     gameSpeedDelay = 200;
@@ -213,5 +203,5 @@ function updateHighScore(){
         highScore = currentScore;
         highScoreText.textContent = highScore.toString().padStart(3, '0');
     }
-    highScore.style.display = 'block';
+    highScoreText.style.display = 'block';
 }
